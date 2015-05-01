@@ -327,11 +327,20 @@
 - (void)alertTextFieldDidChange:(NSNotification *)notification
 {
     UIAlertController *alertController = renameItem;
+    BOOL isExist = NO;
     if (alertController)
     {
         UITextField *name = alertController.textFields.firstObject;
-        if (name.text.length > 2)[yesAction setEnabled:YES];
-        if (name.text.length < 2)[yesAction setEnabled:NO];
+        
+        for (Item *itm in [self fetchedArray]) {
+            if ([itm.title isEqualToString:name.text])isExist=YES;
+        }
+
+        if ((name.text.length > 2) && !isExist){
+            [yesAction setEnabled:YES];
+        } else if ((name.text.length < 2) || isExist){
+            [yesAction setEnabled:NO];
+        }
     }
 }
 

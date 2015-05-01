@@ -256,11 +256,13 @@
             if ([itm.title isEqualToString:name.text])isExist=YES;
         }
         if ((name.text.length > 2) && !isExist) {
+            NSLog(@"%@", @"not extsted");
             [alertController setTitle:@"New Item"];
             [folderAction setEnabled:YES];
             [textAction setEnabled:YES];
             [pictureAction setEnabled:YES];
         } else if ((name.text.length < 2) || isExist) {
+            NSLog(@"%@", @"extsted");
             alertController.title = (isExist) ? @"Is Exist!" : @"Too short!";
             [folderAction setEnabled:NO];
             [textAction setEnabled:NO];
